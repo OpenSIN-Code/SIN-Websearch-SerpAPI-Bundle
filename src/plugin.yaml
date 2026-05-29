@@ -1,0 +1,7 @@
+name: web-serpapi
+version: 1.0.0
+description: "SerpAPI web search provider with key-pool rotation. Uses ~/.hermes/scripts/serpapi-pool.py to load-balance across multiple API keys. Supports search only."
+author: SIN-CLIs
+kind: backend
+provides_web_providers:
+  - serpapi
