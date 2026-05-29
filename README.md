@@ -1,25 +1,33 @@
 # SIN-Hermes-Websearch-SerpAPI-Pool-Bundle
 
-**Multi-Key SerpAPI Pool für Hermes Web-Suche.**
+**Multi-Key SerpAPI Pool für Hermes Web-Suche.** Rotiert automatisch zwischen 4 SerpAPI-Keys um Rate-Limits zu umgehen.
 
-Rotiert automatisch zwischen mehreren SerpAPI-Keys um Rate-Limits zu umgehen.
+**[📖 Installationsanleitung](INSTALL.md)**
 
-## Installation
+## Quick Start
 
 ```bash
-git clone git@github.com:SIN-Hermes-Bundles/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle.git ~/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle
-cd ~/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
+# 1. Passwordmanager installieren (Basis für Infisical):
+cd ~/dev/SIN-Passwordmanager-Infisical-Bundle && bash install.sh
+
+# 2. SerpAPI Pool installieren:
+cd ~/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
+
+# 3. Testen:
+python3 ~/.hermes/scripts/serpapi-pool.py status
 ```
 
-## Funktionsweise
+## Voraussetzungen
+
+- Infisical CLI (`brew install infisical`) + Login
+- 4 Keys `SERPAPI_KEY_1..4` in Infisical (Projekt: `fa7758b4-...`)
+- [SIN-Passwordmanager-Infisical-Bundle](https://github.com/SIN-Hermes-Bundles/SIN-Passwordmanager-Infisical-Bundle) installiert
+
+## Agent-Prompt (Copy & Paste)
 
 ```
-Hermes Web-Suche → serpapi-pool.js → SERPAPI_KEY_1 (100/100)
-                                   → SERPAPI_KEY_2 (45/100)
-                                   → SERPAPI_KEY_3 (0/100)  ← genommen!
+Installiere SerpAPI-Pool-Bundle auf diesem Mac (2 Schritte):
+1. cd ~/dev/SIN-Passwordmanager-Infisical-Bundle && bash install.sh
+2. cd ~/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
+3. python3 ~/.hermes/scripts/serpapi-pool.py status
 ```
-
-## Keys aus Infisical
-
-Keys werden aus Infisical geladen (via Passwordmanager-Bundle).
-Fallback: `~/.hermes/.env` → `SERPAPI_KEY_1`, `SERPAPI_KEY_2`, ...
