@@ -68,7 +68,56 @@ python3 ~/.hermes/scripts/serpapi-pool.py status
 
 ---
 
-## 4. Nutzung
+## 4. Hermes search_backend konfigurieren (WICHTIG!)
+
+Damit Hermes den SerpAPI-Pool auch wirklich für Web-Suche nutzt:
+
+```bash
+# In ~/.hermes/config.yaml setzen:
+#   search_backend: serpapi
+#
+# Prüfen ob schon gesetzt:
+grep "search_backend" ~/.hermes/config.yaml
+# ✅ search_backend: serpapi  ← fertig
+# ❌ search_backend: ''       ← muss geändert werden
+```
+
+**Zum Setzen (einzeilig):**
+```bash
+sed -i '' 's/search_backend: '\'\''/search_backend: serpapi/' ~/.hermes/config.yaml
+# ✅ search_backend auf serpapi gesetzt
+```
+
+**Oder mit `yq` (sauberer):**
+```bash
+yq eval '.search_backend = "serpapi"' -i ~/.hermes/config.yaml
+```
+
+Nach Änderung: Hermes neu starten, dann nutzt er SerpAPI für `web_search`.
+
+---
+
+## 5. Verifikation — Web-Suche ready?
+
+```bash
+# 1. SERPAPI_KEY gesetzt?
+grep SERPAPI_KEY ~/.hermes/.env
+# ✅ SERPAPI_KEY=48f186d4...
+
+# 2. search_backend richtig?
+grep search_backend ~/.hermes/config.yaml
+# ✅ search_backend: serpapi
+
+# 3. Pool funktioniert?
+python3 ~/.hermes/scripts/serpapi-pool.py status
+# ✅ Keys gefunden
+```
+
+Wenn alle 3 ✅ sind → **Web-Suche ist bereit**. Dein Agent kann `web_search` nutzen.
+
+---
+
+## 6. Nutzung
 
 ```bash
 # Besten Key holen (round-robin, auto-fallback bei 429):
@@ -80,7 +129,7 @@ python3 ~/.hermes/scripts/serpapi-pool.py status
 
 ---
 
-## 5. Fehlerbehebung
+## 7. Fehlerbehebung
 
 | Problem | Ursache | Lösung |
 |---------|---------|--------|
@@ -88,6 +137,8 @@ python3 ~/.hermes/scripts/serpapi-pool.py status
 | `infisical-list.py: No such file` | Passwordmanager fehlt | Schritt 0 ausführen |
 | Keys nicht gefunden | Nicht in Infisical | `infisical secrets set ...` |
 | serpapi-pool.py nicht gefunden | Install nicht ausgeführt | `bash install.sh` |
+| Web-Suche nutzt nicht SerpAPI | `search_backend` falsch | `sed -i '' 's/search_backend: .../search_backend: serpapi/' ~/.hermes/config.yaml` |
+| `web_search` schlägt fehl | `SERPAPI_KEY` nicht in `.env` | `python3 ~/.hermes/scripts/serpapi-pool.py setup` |
 
 ---
 

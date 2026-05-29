@@ -26,8 +26,10 @@ python3 ~/.hermes/scripts/serpapi-pool.py status
 ## Agent-Prompt (Copy & Paste)
 
 ```
-Installiere SerpAPI-Pool-Bundle auf diesem Mac (2 Schritte):
+Installiere SerpAPI-Pool-Bundle auf diesem Mac (3 Schritte):
 1. cd ~/dev/SIN-Passwordmanager-Infisical-Bundle && bash install.sh
 2. cd ~/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
-3. python3 ~/.hermes/scripts/serpapi-pool.py status
+3. sed -i '' "s/search_backend: ''/search_backend: serpapi/" ~/.hermes/config.yaml
+4. grep SERPAPI_KEY ~/.hermes/.env  # ✅ Muss Key zeigen
+5. grep search_backend ~/.hermes/config.yaml  # ✅ Muss serpapi zeigen
 ```
