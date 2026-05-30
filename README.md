@@ -1,6 +1,6 @@
 # SIN-Hermes-Websearch-SerpAPI-Pool-Bundle
 
-[![graphify](https://img.shields.io/badge/graphify-knowledge%20graph-8A2BE2)](graphify-out/graph.json)
+[![GitNexus](https://img.shields.io/badge/GitNexus-knowledge%20graph-8B5CF6)](.gitnexus/)
 
 **Multi-Key SerpAPI Pool für Hermes Web-Suche.** Rotiert automatisch zwischen 4 SerpAPI-Keys um Rate-Limits zu umgehen.
 

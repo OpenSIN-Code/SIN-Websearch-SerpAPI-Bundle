@@ -1,0 +1,14 @@
+{
+  "repoPath": "/Users/jeremy/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle",
+  "lastCommit": "2425a3d43c1a777c9f69355e386841b3af901353",
+  "indexedAt": "2026-05-30T00:50:56.755Z",
+  "remoteUrl": "git@github.com:SIN-Hermes-Bundles/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle",
+  "stats": {
+    "files": 9,
+    "nodes": 140,
+    "edges": 158,
+    "communities": 3,
+    "processes": 1,
+    "embeddings": 0
+  }
+}
