@@ -1,39 +1,31 @@
-# SIN-Hermes-Websearch-SerpAPI-Pool-Bundle
+# Archive: SIN-Websearch-SerpAPI-Bundle
 
-[![GitNexus](https://img.shields.io/badge/GitNexus-knowledge%20graph-8B5CF6)](.gitnexus/)
+This repository is **archived** and has been superseded by the unified `sin-websearch` binary in `OpenSIN-Code/web_search_bundle`.
 
-> **⚠️ GitNexus-Pflicht:** Bevor du Code in diesem Repo änderst, MUSST du `gitnexus_impact()` (Blast Radius) und `gitnexus_detect_changes()` (vor Commit) ausführen. Siehe [GitNexus Guide](.gitnexus/).
+## What it was
 
-**Multi-Key SerpAPI Pool für Hermes Web-Suche.** Rotiert automatisch zwischen 4 SerpAPI-Keys um Rate-Limits zu umgehen.
+A Python-based SerpAPI key-pool bundle for the Hermes web search backend. It rotated automatically between multiple SerpAPI keys to avoid rate limits.
 
-**[📖 Installationsanleitung](INSTALL.md)**
+## What replaced it
 
-## Quick Start
+- `sin-websearch` (Go binary) in `OpenSIN-Code/web_search_bundle`.
+- Includes a built-in API key pool with rotation and 429 fallback.
+- Exposes `websearch_search`, `websearch_pulse`, `websearch_resolve`, and more via MCP and HTTP API.
 
-```bash
-# 1. Passwordmanager installieren (Basis für Infisical):
-cd ~/dev/SIN-Passwordmanager-Infisical-Bundle && bash install.sh
+## Why it was archived
 
-# 2. SerpAPI Pool installieren:
-cd ~/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
+The unified Go binary consolidates the SerpAPI pool, caching, history, and all search engines in a single self-contained executable.
 
-# 3. Testen:
-python3 ~/.hermes/scripts/serpapi-pool.py status
-```
+## Migration
 
-## Voraussetzungen
+| Old (Python bundle) | New (Go binary) |
+| --- | --- |
+| `serpapi-pool.py` | `internal/pool/` in `web_search_bundle` |
+| Hermes `search_backend: serpapi` | `sin-websearch search` or `websearch_search` MCP tool |
+| Infisical key loading | `internal/secrets/` (Infisical / env) |
 
-- Infisical CLI (`brew install infisical`) + Login
-- 4 Keys `SERPAPI_KEY_1..4` in Infisical (Projekt: `fa7758b4-...`)
-- [SIN-Passwordmanager-Infisical-Bundle](https://github.com/SIN-Hermes-Bundles/SIN-Passwordmanager-Infisical-Bundle) installiert
+## Read-only
 
-## Agent-Prompt (Copy & Paste)
+No new issues, PRs, or releases are accepted. This repo remains available for historical reference.
 
-```
-Installiere SerpAPI-Pool-Bundle auf diesem Mac (3 Schritte):
-1. cd ~/dev/SIN-Passwordmanager-Infisical-Bundle && bash install.sh
-2. cd ~/dev/SIN-Hermes-Websearch-SerpAPI-Pool-Bundle && bash install.sh
-3. sed -i '' "s/search_backend: ''/search_backend: serpapi/" ~/.hermes/config.yaml
-4. grep SERPAPI_KEY ~/.hermes/.env  # ✅ Muss Key zeigen
-5. grep search_backend ~/.hermes/config.yaml  # ✅ Muss serpapi zeigen
-```
+See the active repository: https://github.com/OpenSIN-Code/web_search_bundle
